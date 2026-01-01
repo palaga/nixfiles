@@ -58,7 +58,9 @@
     hash = "sha256-R3I8NErGSCd6kSTUBNe7SNcRDUtJ1xl8zvD13C6SrRg=";
   };
 
+  # TODO: Future work, for now, link config directly (see below).
   wayland.windowManager.hyprland = {
+    enable = false;
     settings = {
       "$mod" = "SUPER";
 
@@ -68,10 +70,19 @@
     };
   };
 
+  # TODO: Remove this in favor of pure nix config (see above).
+  home.file.".config/hypr" = {
+    enable = true;
+    recursive = true;
+    source = ../config/hypr;
+  };
+
   programs.fuzzel.enable = true;
 
+  # Disable hyprpanel configuration, so we can change transparency.
   stylix.targets.hyprpanel.enable = false;
 
+  # TODO: doesn't seem to work properly
   programs.hyprpanel = {
     enable = true;
     settings = {
