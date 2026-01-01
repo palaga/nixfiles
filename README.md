@@ -1,2 +1,2 @@
-# nixfiles
+# Nix files
 Nixify my life
