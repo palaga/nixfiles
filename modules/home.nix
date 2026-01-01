@@ -7,10 +7,16 @@
   programs.starship.enable = true;
 
   home.packages = with pkgs; [
+    mg
+
+    git
+
     jq
     fzf
 
     azure-cli
+
+    google-chrome
 
     whatsapp-electron
     spotify
@@ -19,7 +25,6 @@
     zulip
     slack
     teams-for-linux
-    # teams # Mac only.
 
     # Doom
     direnv

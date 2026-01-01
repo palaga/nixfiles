@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hosts/mandrill
     ./boot.nix
     ./desktop.nix
     ./system.nix

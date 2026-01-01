@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.chris = {
@@ -7,4 +7,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
+
+  programs.zsh.enable = true;
+
+  home-manager.users.chris = import ./home.nix;
 }
