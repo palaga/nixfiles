@@ -13,10 +13,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, stylix, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, stylix, home-manager, ... }: {
     nixosConfigurations = {
       mandrill = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+
+        specialArgs = { inherit inputs; };
+
         modules = [
           stylix.nixosModules.stylix
           #./modules/configuration.nix

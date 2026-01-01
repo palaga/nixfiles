@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   nix.settings.experimental-features = "nix-command flakes";
@@ -6,14 +6,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-
-  # system.autoUpgrade = {
-  #   enable = true;
-  #   flake = inputs.self.outPath;
-  #   flags = [
-  #     "-L" # print build logs
-  #   ];
-  # };
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "-L" # print build logs
+    ];
+  };
 
   nix.gc = {
     automatic = true;
