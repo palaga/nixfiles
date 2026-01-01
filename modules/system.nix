@@ -14,11 +14,18 @@
     ];
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 30d --keep 5";
+    # flake = "/home/user/my-nixos-config"; # sets NH_OS_FLAKE variable for you
   };
+
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 30d";
+  # };
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
