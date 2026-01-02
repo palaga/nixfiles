@@ -41,6 +41,4 @@
     "udev.log_priority=3"
     "rd.systemd.show_status=auto"
   ];
-
-  boot.initrd.luks.devices."luks-a36bd82a-156c-4388-a5ec-39f82206b1a1".device = "/dev/disk/by-uuid/a36bd82a-156c-4388-a5ec-39f82206b1a1";
 }
