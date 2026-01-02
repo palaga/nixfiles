@@ -1,24 +1,27 @@
 let
-  mkSubvolume = { name, compress ? "zstd", atime ? "noatime" }: {
+  mkSubvolume = { name, compress ? "zstd", lazytime ? false }: {
     name = name;
     value = {
       mountpoint = name;
-      mountOptions = [ "compress=${compress}" atime ];
+      mountOptions = [
+        "compress=${compress}"
+        (if lazytime then "lazytime" else "noatime")
+      ];
     };
   };
   subvolumes = builtins.listToAttrs (
     map mkSubvolume [
       { name = "/"; }
-      { name = "/home"; atime = "lazyatime"; }
+      { name = "/home"; lazytime = true; }
       { name = "/nix"; }
-      { name = "/work"; atime = "lazyatime"; }
+      { name = "/work"; lazytime = true; }
     ]
   );
 in {
   disko.devices.disk = {
     main = {
       type = "disk";
-      device = "/dev/sda";
+      device = "/dev/nvme0n1";
       content = {
         type = "gpt";
         partitions = {
