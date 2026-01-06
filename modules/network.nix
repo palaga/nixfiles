@@ -7,6 +7,12 @@
   networking.networkmanager.enable = true;
   networking.nftables.enable = true;
 
+  networking.firewall.trustedInterfaces = [ "incusbr0" ];
+
+  # Required for docker network access.
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl."net.ipv6.ip_forward" = 1;
+
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
