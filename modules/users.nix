@@ -4,7 +4,7 @@
   users.users.chris = {
     isNormalUser = true;
     description = "Chris";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "incus-admin" ];
     shell = pkgs.zsh;
   };
 

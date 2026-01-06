@@ -1,5 +1,3 @@
-# { config, pkgs, home-manager, ... }:
-
 {
   imports = [
     ./disk-config.nix
@@ -12,10 +10,13 @@
     ../../network.nix
     ../../stylix.nix
     ../../virtualisation.nix
+    ../../work.nix
   ];
 
   # TODO: facter seems to fail for me, on some graphics kernel modules.
   # hardware.facter.reportPath = ./facter.json;
+
+  networking.hostName = "gibbon";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

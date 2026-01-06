@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  networking.hostName = "mandrill"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
