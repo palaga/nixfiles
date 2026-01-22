@@ -20,6 +20,7 @@
 
     whatsapp-electron
     spotify
+    satty                       # For screenshot editting
 
     # Work
     zulip
