@@ -17,7 +17,9 @@
     google-chrome
 
     whatsapp-electron
-    spotify
+    spotify # <- TODO: remove this one
+    deezer-enhanced
+
     satty                       # For screenshot editting
 
     # Work
