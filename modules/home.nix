@@ -20,6 +20,7 @@
     spotify # <- TODO: remove this one
     deezer-enhanced
 
+    pavucontrol
     satty                       # For screenshot editting
 
     # Work
