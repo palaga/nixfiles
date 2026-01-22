@@ -9,8 +9,6 @@
   home.packages = with pkgs; [
     mg
 
-    git
-
     jq
     fzf
 
@@ -48,6 +46,11 @@
     wev
     wl-clipboard
   ];
+
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+  };
 
   programs.obsidian = {
     enable = true;
