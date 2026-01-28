@@ -29,7 +29,6 @@
     teams-for-linux
 
     # Doom
-    direnv
     ripgrep
     pandoc
     fd
@@ -49,6 +48,8 @@
     wev
     wl-clipboard
   ];
+
+  programs.direnv.enable = true;
 
   programs.git = {
     enable = true;
