@@ -9,6 +9,7 @@
     docker
     docker-buildx
     docker-compose
+    devbox
   ];
 
   services.envfs.enable = true;
