@@ -41,6 +41,7 @@
       droid-sans-mono
       sauce-code-pro
       symbols-only # Doom Emacs requirement
+      pkgs.open-sans
     ];
   };
 
