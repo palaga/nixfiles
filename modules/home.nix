@@ -138,8 +138,8 @@
   programs.hyprlock.enable = true;
   programs.hyprshot.enable = true;
   services.hyprsunset.enable = true;
-  services.hyprshell.enable = true;
-  #services.hyprpaper.enable = true;
+  # services.hyprshell.enable = true;
+  # services.hyprpaper.enable = true;
   services.swww.enable = true;
 
   services.hypridle = {
