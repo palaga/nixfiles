@@ -95,22 +95,24 @@
   # Disable hyprpanel configuration, so we can change transparency.
   stylix.targets.hyprpanel.enable = false;
 
-  # TODO: doesn't seem to work properly
   programs.hyprpanel = {
     enable = true;
     settings = {
-      # Configure bar layouts for monitors.
-      # See 'https://hyprpanel.com/configuration/panel.html'.
-      # Default: null
-      layout = {
-        bar.layouts = {
-          "*" = {
-            left = [ "dashboard" "workspaces" ];
-            middle = [ "media" ];
-            right = [ "volume" "systray" "notifications" ];
-          };
+      bar.layouts = {
+        "0" = {
+          left = [ "dashboard" "workspaces" ];
+          middle = [  ];
+          right = [ "volume" "systray" "clock" "battery" "notifications" ];
+        };
+
+        "*" = {
+          left = [ "dashboard" "workspaces" ];
+          middle = [ "windowtitle" "media" ];
+          right = [ "volume" "systray" "clock" "battery" "notifications" ];
         };
       };
+
+      bar.clock.format = "%H:%M:%S";
 
       bar.launcher.autoDetectIcon = true;
       bar.workspaces.show_icons = true;
