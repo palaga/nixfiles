@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   home.stateVersion = "25.11";
 
   # Allow unfree packages
@@ -48,6 +48,39 @@
     wev
     wl-clipboard
   ];
+
+  programs.chromium = {
+    enable = true;
+    package = pkgs.ungoogled-chromium;
+    extensions =
+      let
+        createChromiumExtensionFor = browserVersion: { id, sha256, version }:
+          {
+            inherit id;
+            crxPath = builtins.fetchurl {
+              url = "https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&prodversion=${browserVersion}&x=id%3D${id}%26installsource%3Dondemand%26uc";
+              name = "${id}.crx";
+              inherit sha256;
+            };
+            inherit version;
+          };
+        createChromiumExtension = createChromiumExtensionFor (lib.versions.major pkgs.ungoogled-chromium.version);
+      in
+        [
+          (createChromiumExtension {
+            # ublock origin lite
+            id = "ddkjiahejlhfcafbddmgiahcphecmpfh";
+            sha256 = "sha256:0yflvp1am7lrrbqz10rg16cfzd5ppwvqsqj2gcxq7cv4g3jpjp59";
+            version = "2026.208.2004";
+          })
+          (createChromiumExtension {
+            # lastpass
+            id = "hdokiejnpimakedhajhdlcegeplioahd";
+            sha256 = "sha256:0win5xkc3x9rr34wg8bz4ycl91hk54cs1fbkckbrnaaliarqdzd0";
+            version = "4.151.3";
+          })
+        ];
+  };
 
   programs.direnv.enable = true;
 
