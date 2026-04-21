@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -16,12 +18,18 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, disko, nixpkgs, nixos-hardware, stylix, home-manager, ... }: {
+  outputs = inputs@{ self, disko, nixpkgs, nixpkgs-unstable, nixos-hardware, stylix, home-manager, ... }: {
     nixosConfigurations = {
       mandrill = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          pkgs-unstable = import nixpkgs-unstable {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+        };
 
         modules = [
           stylix.nixosModules.stylix
@@ -31,20 +39,30 @@
         ];
       };
 
-      gibbon = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      gibbon =
+        let
+          system = "x86_64-linux";
+        in
+          nixpkgs.lib.nixosSystem {
+            system = system;
 
-        specialArgs = { inherit inputs; };
+            specialArgs = {
+              inherit inputs;
+              pkgs-unstable = (import nixpkgs-unstable {
+                system = system;
+                config.allowUnfree = true;
+              });
+            };
 
-        modules = [
-          disko.nixosModules.disko
-          stylix.nixosModules.stylix
-          ./modules/hosts/gibbon
-          # TODO: facter seems to fail for me, on some graphics kernel modules.
-          # { hardware.facter.reportPath = ./modules/hosts/gibbon/facter.json; }
-          home-manager.nixosModules.home-manager
-        ];
-      };
+            modules = [
+              disko.nixosModules.disko
+              stylix.nixosModules.stylix
+              ./modules/hosts/gibbon
+              # TODO: facter seems to fail for me, on some graphics kernel modules.
+              # { hardware.facter.reportPath = ./modules/hosts/gibbon/facter.json; }
+              home-manager.nixosModules.home-manager
+            ];
+          };
     };
   };
 }
