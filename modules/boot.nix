@@ -20,9 +20,10 @@
 
   # Enable virtual cam.
   boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
 
   boot.extraModprobeConfig = ''
-    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+    options v4l2loopback exclusive_caps=1 video_nr=10 card_label="Virtual Camera"
   '';
 
   boot.plymouth = {
