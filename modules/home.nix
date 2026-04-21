@@ -41,6 +41,10 @@
     gopls
     rust-analyzer
 
+    hunspell
+    hunspellDicts.nl_NL
+    hunspellDicts.en_US
+
     # hyprland
     brightnessctl
     wlr-randr
