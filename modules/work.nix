@@ -15,8 +15,6 @@
     pam_u2f                     # Used for yubikey
     libfido2                    # Used for yubikey
     libsecret
-    pkgs-unstable.nushell
-    pkgs-unstable.nushellPlugins.hcl
     pkgs-unstable.crush
     pkgs-unstable.agent-browser
     jan

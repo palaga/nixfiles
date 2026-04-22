@@ -53,6 +53,18 @@
     wl-clipboard
   ];
 
+  programs.nushell = {
+    enable = true;
+    # package = FIX
+    plugins = with pkgs.nushellPlugins; [
+      formats
+      gstat
+      hcl
+      polars
+      query
+    ];
+  };
+
   programs.chromium = {
     enable = true;
     package = pkgs.ungoogled-chromium;
